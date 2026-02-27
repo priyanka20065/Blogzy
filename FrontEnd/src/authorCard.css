@@ -1,0 +1,74 @@
+.AuthorCard {
+    background: var(--card-bg);
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    border-bottom: 2px solid var(--border-color);
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.AuthorCard:hover {
+    background: var(--bg-color);
+}
+
+.author-left {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    flex: 2;
+}
+
+.author-left img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+}
+
+.author-name {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-color);
+    letter-spacing: -1px;
+}
+
+.author-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.author-count {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary-text);
+    background: var(--bg-color);
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+}
+
+.archive {
+    text-decoration: none;
+    font-weight: 800;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.archive:hover {
+    color: var(--secondary-text);
+    transform: translateX(10px);
+}
+
+.author-card-line {
+    display: none;
+}
