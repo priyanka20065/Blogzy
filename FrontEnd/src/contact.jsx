@@ -20,7 +20,7 @@ function Contact() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("http://localhost:8000/api/contact", {
+            const res = await fetch("https://blogzy-1ud1.onrender.com/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

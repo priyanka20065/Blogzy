@@ -1,6 +1,6 @@
 
 async function testBookmarks() {
-    const baseURL = 'http://localhost:8000/api';
+    const baseURL = 'https://blogzy-1ud1.onrender.com/api';
     let token = '';
     let blogId = '';
 

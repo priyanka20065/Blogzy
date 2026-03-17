@@ -41,7 +41,7 @@ function Login() {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/api/auth/login", {
+            const response = await fetch("https://blogzy-1ud1.onrender.com/api/auth/login", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

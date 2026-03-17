@@ -42,7 +42,7 @@ function Signup() {
             return;
         }
         try {
-            const res = await fetch("http://localhost:8000/api/auth/signup", {
+            const res = await fetch("https://blogzy-1ud1.onrender.com/api/auth/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
