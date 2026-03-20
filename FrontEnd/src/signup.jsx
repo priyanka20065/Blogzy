@@ -6,6 +6,7 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({});
     const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
 
