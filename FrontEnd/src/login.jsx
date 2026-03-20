@@ -13,6 +13,7 @@ function Login() {
         if (!email) newErrors.email = "Email is required";
         else if (!email.includes("@") || !email.includes("."))
             newErrors.email = "Invalid email format";
+        const apiUrl = import.meta.env.VITE_API_URL;
 
         if (!password) newErrors.password = "Password is required";
         else {
@@ -41,12 +42,12 @@ function Login() {
         }
 
         try {
-            const response = await fetch("https://blogzy-1ud1.onrender.com/api/auth/login", {
+            const response = await fetch("https://blogzy-44qz.onrender.com/api/auth/login", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                const response = await fetch(`${apiUrl}/api/auth/login`, {
             });
             const data = await response.json();
             if (!response.ok) {

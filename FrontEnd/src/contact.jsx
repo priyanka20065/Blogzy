@@ -8,6 +8,7 @@ function Contact() {
     });
     const [status, setStatus] = useState({ type: "", msg: "" });
     const [loading, setLoading] = useState(false);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,7 +21,7 @@ function Contact() {
 
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch("https://blogzy-1ud1.onrender.com/api/contact", {
+            const res = await fetch(`${apiUrl}/api/contact`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
