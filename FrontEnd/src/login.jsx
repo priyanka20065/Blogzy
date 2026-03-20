@@ -47,7 +47,6 @@ function Login() {
                 headers: {
                     "content-type": "application/json",
                 },
-                const response = await fetch(`${apiUrl}/api/auth/login`, {
             });
             const data = await response.json();
             if (!response.ok) {
