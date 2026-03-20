@@ -6,7 +6,7 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState({});
+    const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
 
     const validate = () => {
@@ -21,7 +21,6 @@ function Signup() {
         else {
             if (password.length < 8)
                 newErrors.password = "Password must be at least 8 characters";
-            const apiUrl = import.meta.env.VITE_API_URL;
             else if (!/[A-Z]/.test(password))
                 newErrors.password =
                     "Password must contain at least one uppercase letter";
@@ -43,7 +42,7 @@ function Signup() {
             return;
         }
         try {
-            const res = await fetch("https://blogzy-44qz.onrender.com/api/auth/signup", {
+            const res = await fetch(`${apiUrl}/api/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -55,7 +54,6 @@ function Signup() {
                 setErrors({ general: data.msg || "Signup failed" });
                 return;
             }
-                    const res = await fetch(`${apiUrl}/api/auth/signup`, {
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
             navigate("/");
