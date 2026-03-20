@@ -67,7 +67,7 @@ function Signup() {
         <div className="auth-wrapper">
             <div className="auth-card">
                 <div className="auth-illustration">
-                    <img src="../src/assets/signup.png" alt="signup visual" />
+                    <img src="/assets/signup.png" alt="signup visual" />
                     <h2>Join the Community ✨</h2>
                     <p>Create an account to publish, follow, and connect with authors.</p>
                 </div>

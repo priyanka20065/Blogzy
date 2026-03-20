@@ -67,7 +67,7 @@ function Login() {
         <div className="auth-wrapper">
             <div className="auth-card">
                 <div className="auth-illustration">
-                    <img src="../src/assets/login.png" alt="login visual" />
+                    <img src="/assets/login.png" alt="login visual" />
                     <h2>Welcome Back 👋</h2>
                     <p>
                         Log in to explore blogs, follow authors, and join the conversation.
