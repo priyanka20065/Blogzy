@@ -35,6 +35,27 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: [false, "Blog image is required"],
     },
+
+    comments: [
+      {
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        text: { type: String, required: true },
+        createdAt: { type: Date, default: Date.now },
+      },
+    ],
+
+    // Visibility: 'public' (everyone) or 'private' (only creator)
+    visibility: {
+      type: String,
+      enum: ["public", "private"],
+      default: "public",
+    },
+    // Creator of the blog (for private blogs)
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true }
 );

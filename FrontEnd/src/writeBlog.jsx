@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./writeBlog.css";
 
+
 function WriteBlog() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [category, setCategory] = useState("General");
-    const [image, setImage] = useState("");
+    // const [image, setImage] = useState("");
     const [user, setUser] = useState(null);
     const [authorId, setAuthorId] = useState("");
+    const [visibility, setVisibility] = useState("public");
+    const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {
         const userSession = localStorage.getItem("user");
@@ -16,44 +19,43 @@ function WriteBlog() {
         const u = JSON.parse(userSession);
         setUser(u);
         if (!u) return;
-
-        if (u.role === "author") {
-            setAuthorId(u._id || u.id); // try both just in case
-        }
+        setAuthorId(u._id || u.id); // Always set authorId for all users
     }, []);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !content) {
+        console.log('DEBUG:', { title, content, imageUrl });
+        if (!title.trim() || !content.trim() || !imageUrl.trim()) {
             alert("⚠️ Please fill all fields!");
             return;
         }
 
-        if (!user || user.role !== "author") {
-            alert("❌ Only authors can write blogs!");
+        if (!user) {
+            alert("❌ You must be logged in to write blogs!");
             return;
         }
 
         try {
             const token = localStorage.getItem("token");
-            const formData = new FormData();
-            formData.append("heading", title);
-            formData.append("content", content);
-            formData.append("category", category);
-            formData.append("author", authorId);
-            formData.append("date", new Date().toISOString());
-
-            if (image) {
-                formData.append("image", image); // This is now a File object
-            }
+            const blogData = {
+                heading: title,
+                content,
+                category,
+                author: authorId,
+                date: new Date().toISOString(),
+                image: imageUrl,
+                visibility: user && user.role === "author" ? visibility : "private",
+            };
 
             const res = await fetch("/api/blogs", {
                 method: "POST",
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
                 },
-                body: formData,
+                body: JSON.stringify(blogData),
             });
 
             const data = await res.json();
@@ -66,9 +68,8 @@ function WriteBlog() {
             alert("✅ Blog published!");
             setTitle("");
             setContent("");
-            setImage(null);
             setCategory("General");
-            // Reset file input
+            setVisibility("public");
             e.target.reset();
         } catch (error) {
             alert("❌ Error publishing blog!");
@@ -78,83 +79,83 @@ function WriteBlog() {
 
     return (
         <div className="writeblog-container">
-            <div className="writeblog-card">
-                <h1 className="writeblog-heading">✍️ Create a New Blog</h1>
-                <p className="writeblog-subtext">
-                    Writing as: <strong>{user?.name}</strong>
-                </p>
-                <form onSubmit={handleSubmit} className="writeblog-form">
-                    <div className="form-group">
-                        <label>Blog Title</label>
-                        <input
-                            type="text"
-                            placeholder="Enter a catchy title..."
+            <form onSubmit={handleSubmit} className="writeblog-form">
+                <div className="form-group">
+                    <label>Title <span style={{color: 'red'}}>*</span></label>
+                    <input
+                        type="text"
+                        className="writeblog-input"
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        placeholder="Enter blog title"
+                    />
+                </div>
+                <div className="form-row">
+                    <div className="form-group flex-1">
+                        <label>Category</label>
+                        <select
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                             className="writeblog-input"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            required
-                        />
+                        >
+                            <option>General</option>
+                            <option>Political</option>
+                            <option>Sports</option>
+                            <option>Art</option>
+                        </select>
                     </div>
-
-                    <div className="form-row">
-                        <div className="form-group flex-1">
-                            <label>Category</label>
-                            <select
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                    <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <div className="form-group">
+                            <label>Image URL <span style={{color: 'red'}}>*</span></label>
+                            <input
+                                type="url"
+                                placeholder="https://example.com/image.jpg"
                                 className="writeblog-input"
-                            >
-                                <option>General</option>
-                                <option>Political</option>
-                                <option>Sports</option>
-                                <option>Art</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group flex-2">
-                            <label>Cover Image (Optional)</label>
-                            <div className="file-input-wrapper">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    className="writeblog-file-input"
-                                    id="blog-image"
-                                    onChange={(e) => setImage(e.target.files[0])}
-                                />
-                                <label htmlFor="blog-image" className="file-label">
-                                    {image ? `📁 ${image.name}` : "📂 Choose an image..."}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {image && (
-                        <div className="image-preview-container">
-                            <p>Image Preview:</p>
-                            <img
-                                src={URL.createObjectURL(image)}
-                                alt="Blog Cover"
-                                className="writeblog-preview"
+                                value={imageUrl}
+                                onChange={e => setImageUrl(e.target.value)}
                             />
                         </div>
-                    )}
-
-                    <div className="form-group">
-                        <label>Blog Content</label>
-                        <textarea
-                            placeholder="Once upon a time..."
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                            className="writeblog-textarea"
-                            required
-                        />
+                        {imageUrl && (
+                            <div className="image-preview-container">
+                                <p>Image Preview:</p>
+                                <img
+                                    src={imageUrl}
+                                    alt="Blog Cover"
+                                    className="writeblog-preview"
+                                    style={{maxWidth: '100%', maxHeight: '200px'}}
+                                />
+                            </div>
+                        )}
                     </div>
+                </div>
 
-                    <button type="submit" className="writeblog-btn">
-                        🚀 Publish Blog
-                    </button>
-                </form>
-            </div>
+                <div className="form-group">
+                    <label>Blog Content</label>
+                    <textarea
+                        placeholder="Once upon a time..."
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        className="writeblog-textarea"
+                    />
+                </div>
+
+                {user && user.role === "author" && (
+                    <div className="form-group">
+                        <label>Visibility</label>
+                        <select
+                            value={visibility}
+                            onChange={e => setVisibility(e.target.value)}
+                            className="writeblog-input"
+                        >
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                )}
+                <button type="submit" className="writeblog-btn">
+                    🚀 Publish Blog
+                </button>
+            </form>
         </div>
     );
 }

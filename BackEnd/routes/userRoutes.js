@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
 const { toggleBookmark, getBookmarks, toggleFollow, getFollowing } = require("../controllers/userController");
 
 router.post("/bookmark/:id", auth, toggleBookmark);

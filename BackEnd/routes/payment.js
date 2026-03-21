@@ -1,7 +1,7 @@
 const express = require("express");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
-const authMiddleware = require("../middleware/auth");
+const { auth } = require("../middleware/auth");
 const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const router = express.Router();
@@ -14,7 +14,7 @@ const razorpay = new Razorpay({
 /**
  * CREATE ORDER
  */
-router.post("/create-order", authMiddleware, async (req, res) => {
+router.post("/create-order", auth, async (req, res) => {
   try {
     const { amount } = req.body;
     const options = {
@@ -38,7 +38,7 @@ router.post("/create-order", authMiddleware, async (req, res) => {
 /**
  * VERIFY PAYMENT + UPDATE ROLE
  */
-router.post("/verify-payment", authMiddleware, async (req, res) => {
+router.post("/verify-payment", auth, async (req, res) => {
 
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature, planType, authorData } =

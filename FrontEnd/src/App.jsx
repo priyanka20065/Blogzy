@@ -11,8 +11,11 @@ import Bookmarks from "./bookmarks";
 import Contact from "./contact";
 import Login from "./login";
 import Signup from "./signup";
+
+
 import ProtectedRoute from "./protectedRoute";
 import Profile from "./profile";
+import EditBlog from "./EditBlog";
 import { ThemeProvider } from "./themeContext";
 
 function App() {
@@ -126,6 +129,17 @@ function App() {
               <ProtectedRoute>
                 <Navbar />
                 <AuthorDetail />
+                <Footer />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/edit-blog/:id"
+            element={
+              <ProtectedRoute>
+                <Navbar />
+                <EditBlog />
                 <Footer />
               </ProtectedRoute>
             }

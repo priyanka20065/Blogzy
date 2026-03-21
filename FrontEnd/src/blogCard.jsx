@@ -82,8 +82,12 @@ function BlogCard({ id, category, date, image, title, description, author }) {
         }
     };
 
-    return (
-        <div className="blog-card">
+        return (
+            <div
+                className="blog-card"
+                style={{ cursor: "pointer" }}
+                onClick={() => id && navigate(`/blogs/detail/${id}`)}
+            >
             <div className="blog-card-header">
                 <span className="date">{new Date(date).toLocaleDateString()}</span>
                 <span className="category">{category}</span>
