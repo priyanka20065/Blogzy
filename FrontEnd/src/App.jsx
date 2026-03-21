@@ -19,6 +19,7 @@ import EditBlog from "./EditBlog";
 import { ThemeProvider } from "./themeContext";
 
 function App() {
+  console.log("[DEBUG] VITE_API_URL:", import.meta.env.VITE_API_URL);
   return (
     <ThemeProvider>
       <Router>
