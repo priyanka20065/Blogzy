@@ -1,7 +1,9 @@
 
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./blogDetail.css";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 function BlogDetails() {
@@ -18,7 +20,7 @@ function BlogDetails() {
         async function fetchBlog() {
             try {
                 const token = localStorage.getItem("token");
-                const res = await fetch(`/api/blogs/${id}`, {
+                const res = await fetch(`${apiUrl}/api/blogs/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -59,7 +61,7 @@ function BlogDetails() {
         setCommentLoading(true);
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`/api/blogs/${id}/comment`, {
+            const res = await fetch(`${apiUrl}/api/blogs/${id}/comment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,5 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function EditBlog() {
   const { id } = useParams();
@@ -11,11 +13,11 @@ function EditBlog() {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchBlog = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch(`/api/blogs/${id}`, {
+        const res = await fetch(`${apiUrl}/api/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch blog");
@@ -37,7 +39,7 @@ function EditBlog() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`/api/blogs/${id}`, {
+      const res = await fetch(`${apiUrl}/api/blogs/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

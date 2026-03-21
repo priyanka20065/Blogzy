@@ -1,8 +1,10 @@
 
+
 import BlogCard from "./blogCard";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./profile.css";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 function Profile() {
@@ -26,7 +28,7 @@ function Profile() {
                 }
 
                 // Fetch following
-                const res = await fetch("/api/user/following", {
+                const res = await fetch(`${apiUrl}/api/user/following`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -37,7 +39,7 @@ function Profile() {
 
                             const res = await fetch(`${apiUrl}/api/user/following`, {
                 // Fetch my blogs (public and private)
-                const blogsRes = await fetch("/api/blogs/my", {
+                const blogsRes = await fetch(`${apiUrl}/api/blogs/my`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

@@ -1,7 +1,9 @@
 
+
 import { useEffect, useState } from "react";
 import BlogCard from "./blogCard";
 import "./blogs.css"; // Reuse blogs css for grid layout
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Bookmarks() {
     const [bookmarks, setBookmarks] = useState([]);
@@ -11,7 +13,7 @@ function Bookmarks() {
         const fetchBookmarks = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await fetch("/api/user/bookmarks", {
+                const res = await fetch(`${apiUrl}/api/user/bookmarks`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

@@ -51,8 +51,9 @@ function BlogCard({ id, category, date, image, title, description, author }) {
         }
 
         console.log(`[BlogCard] Sending bookmark request for blog: ${id}`);
+        const apiUrl = import.meta.env.VITE_API_URL;
         try {
-            const res = await fetch(`/api/user/bookmark/${id}`, {
+            const res = await fetch(`${apiUrl}/api/user/bookmark/${id}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
