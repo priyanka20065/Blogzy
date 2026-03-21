@@ -36,8 +36,6 @@ function Profile() {
                 if (!res.ok) throw new Error("Failed to fetch following list");
                 const data = await res.json();
                 setFollowing(data.following);
-
-                            const res = await fetch(`${apiUrl}/api/user/following`, {
                 // Fetch my blogs (public and private)
                 const blogsRes = await fetch(`${apiUrl}/api/blogs/my`, {
                     headers: {
@@ -47,8 +45,7 @@ function Profile() {
                 if (blogsRes.ok) {
                     const blogsData = await blogsRes.json();
                     setMyBlogs(blogsData.blogs || []);
-                            const blogsRes = await fetch(`${apiUrl}/api/blogs/my`, {
-
+                }
                 setLoading(false);
             } catch (err) {
                 console.error(err);
