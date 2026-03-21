@@ -16,10 +16,18 @@ const Footer = () => {
                         Bringing the best stories, insights, and perspectives directly to you.
                     </p>
                     <div className="footer-socials">
-                        <a href="https://www.youtube.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i></a>
-                        <a href="https://www.instagram.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/" className="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube" style={{width: 24, height: 24}} />
+                        </a>
+                        <a href="https://www.instagram.com/" className="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" style={{width: 24, height: 24}} />
+                        </a>
+                        <a href="https://www.facebook.com/" className="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" style={{width: 24, height: 24}} />
+                        </a>
+                        <a href="https://twitter.com/" className="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" style={{width: 24, height: 24}} />
+                        </a>
                     </div>
                 </div>
 
