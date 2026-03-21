@@ -43,7 +43,9 @@ function Signup() {
             return;
         }
         try {
-            const res = await fetch("/api/auth/signup", {
+            const apiUrl = import.meta.env.VITE_API_URL || "";
+            console.log("[DEBUG] VITE_API_URL:", apiUrl);
+            const res = await fetch(`${apiUrl}/api/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
