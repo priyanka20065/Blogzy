@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../models/UserSetting"); // unified User model
+const User = require("../models/UserSetting"); // unified User model (now points to 'User' collection)
 
 // Get all authors with real-time blog counts
 const getAllAuthors = async (req, res) => {

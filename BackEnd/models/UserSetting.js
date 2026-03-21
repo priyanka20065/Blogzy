@@ -38,13 +38,13 @@ const UserSchema = new mongoose.Schema(
     followers: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserSetting",
+        ref: "User",
       },
     ],
     following: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "UserSetting",
+        ref: "User",
       },
     ],
   },
@@ -52,5 +52,5 @@ const UserSchema = new mongoose.Schema(
 );
 
 // Check if model exists before compiling
-const User = mongoose.models.User || mongoose.models.UserSetting || mongoose.model("UserSetting", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
 module.exports = User;

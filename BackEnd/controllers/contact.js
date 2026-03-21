@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const User = require("../models/UserSetting");
+const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const sendContactEmail = async (req, res) => {
     const { name, message } = req.body; // ❌ no email input

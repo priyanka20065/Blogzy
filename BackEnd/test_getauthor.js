@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./models/UserSetting");
+const User = require("./models/UserSetting"); // now points to 'User' collection
 require("dotenv").config();
 
 const test = async () => {

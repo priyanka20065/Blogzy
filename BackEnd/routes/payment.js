@@ -2,7 +2,7 @@ const express = require("express");
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 const authMiddleware = require("../middleware/auth");
-const User = require("../models/UserSetting");
+const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
-const User = require("../models/UserSetting"); // Correct model path
+const User = require("../models/UserSetting"); // now points to 'User' collection
 
 // LOGIN
 const login = async (req, res) => {

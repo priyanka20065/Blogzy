@@ -1,4 +1,4 @@
-const User = require("../models/UserSetting");
+const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const toggleBookmark = async (req, res) => {
     try {
