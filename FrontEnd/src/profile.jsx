@@ -111,7 +111,7 @@ function Profile() {
                                                     onClick={async () => {
                                                         if (!window.confirm("Are you sure you want to delete this blog?")) return;
                                                         const token = localStorage.getItem("token");
-                                                        const res = await fetch(`/api/blogs/${blog._id}`, {
+                                                        const res = await fetch(`${apiUrl}/api/blogs/${blog._id}`, {
                                                             method: "DELETE",
                                                             headers: { Authorization: `Bearer ${token}` },
                                                         });
@@ -182,7 +182,7 @@ function Profile() {
                                                 onClick={async () => {
                                                     if (!window.confirm("Are you sure you want to delete this blog?")) return;
                                                     const token = localStorage.getItem("token");
-                                                    const res = await fetch(`/api/blogs/${blog._id}`, {
+                                                    const res = await fetch(`${apiUrl}/api/blogs/${blog._id}`, {
                                                         method: "DELETE",
                                                         headers: { Authorization: `Bearer ${token}` },
                                                     });
