@@ -12,12 +12,12 @@ function Authors() {
         const fetchAuthors = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await fetch("/api/authors", {
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const res = await fetch(`${apiUrl}/api/authors`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
                 if (!res.ok) {
                     if (res.status === 401) {
                         navigate("/login");
@@ -25,7 +25,6 @@ function Authors() {
                     }
                     throw new Error("Failed to fetch authors");
                 }
-
                 const data = await res.json();
                 setAuthors(data.authors || []);
             } catch (error) {

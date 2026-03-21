@@ -16,23 +16,20 @@ function Blog() {
         async function getBlogs() {
             try {
                 const token = localStorage.getItem("token");
-
-                const res = await fetch("/api/blogs", {
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const res = await fetch(`${apiUrl}/api/blogs`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-
                 if (!res.ok) {
                     if (res.status === 401) {
                         navigate("/login");
                         return;
                     }
                     throw new Error("UnAuthorized");
-                    return;
                 }
                 const data = await res.json();
-
                 setAllBlogs(data.blogs);
                 setLoading(false);
             } catch (err) {
