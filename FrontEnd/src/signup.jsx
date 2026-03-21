@@ -98,12 +98,12 @@ function Signup() {
                         {errors.general && <p className="error">{errors.general}</p>}
                         <button type="submit">Create Account</button>
                     </form>
-                    <div className="auth-divider">
+                    {/* <div className="auth-divider">
                         <span>OR</span>
                     </div>
                     <div className="auth-socials">
                         <button type="button" onClick={() => window.location.href = "/api/auth/google"} className="google-btn">Sign Up With Google</button>
-                    </div>
+                    </div> */}
                     <p className="auth-switch">
                         Already have an account? <a href="/login">Login</a>
                     </p>
