@@ -328,8 +328,8 @@ function Home() {
         const fetchBlogs = async () => {
             try {
                 const token = localStorage.getItem("token");
-
-                const res = await fetch("/api/blogs", {
+                const apiUrl = import.meta.env.VITE_API_URL;
+                const res = await fetch(`${apiUrl}/api/blogs`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -342,12 +342,10 @@ function Home() {
                     throw new Error("UnAuthorized");
                 }
                 const data = await res.json();
-
                 if (!data?.blogs || !Array.isArray(data.blogs)) {
                     setFeaturedBlogs([]);
                     return;
                 }
-
                 const sorted = data.blogs.sort(
                     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
                 );

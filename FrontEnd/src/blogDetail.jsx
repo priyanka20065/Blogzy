@@ -41,7 +41,8 @@ function BlogDetails() {
 
                 // Reading time
                 const wordsPerMinute = 200;
-                const wordCount = data.blog.content?.trim().split(/\s+/).length || 0;
+                                const apiUrl = import.meta.env.VITE_API_URL;
+                                const res = await fetch(`${apiUrl}/api/blogs/${id}`, {
                 setReadTime(Math.ceil(wordCount / wordsPerMinute));
             } catch (err) {
                 console.error("Error fetching blog:", err);
@@ -81,7 +82,7 @@ function BlogDetails() {
         }
     };
 
-    if (!blog) return <p className="loading-text">Loading blog...</p>;
+                            const res = await fetch(`${apiUrl}/api/blogs/${id}/comment`, {
 
     const author = blog.author; // ✅ DIRECT FROM BACKEND
 

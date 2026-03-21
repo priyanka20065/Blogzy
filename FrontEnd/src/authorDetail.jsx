@@ -22,8 +22,9 @@ function AuthorDetail() {
                 const currentUser = JSON.parse(localStorage.getItem("user"));
 
                 /* ---------------- FETCH AUTHOR ---------------- */
+                const apiUrl = import.meta.env.VITE_API_URL;
                 const authorRes = await fetch(
-                    `/api/authors/${id}`,
+                    `${apiUrl}/api/authors/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -52,7 +53,7 @@ function AuthorDetail() {
                 }
 
                 /* ---------------- FETCH BLOGS ---------------- */
-                const blogsRes = await fetch("/api/blogs", {
+                const blogsRes = await fetch(`${apiUrl}/api/blogs`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -86,7 +87,8 @@ function AuthorDetail() {
     const handleFollow = async () => {
         try {
             const token = localStorage.getItem("token");
-            const res = await fetch(`/api/user/follow/${id}`, {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const res = await fetch(`${apiUrl}/api/user/follow/${id}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,

@@ -49,7 +49,8 @@ function WriteBlog() {
                 visibility: user && user.role === "author" ? visibility : "private",
             };
 
-            const res = await fetch("/api/blogs", {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const res = await fetch(`${apiUrl}/api/blogs`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
