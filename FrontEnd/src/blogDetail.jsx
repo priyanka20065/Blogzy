@@ -85,7 +85,12 @@ function BlogDetails() {
 
 
 
-    const author = blog.author; // ✅ DIRECT FROM BACKEND
+    // Only assign author if blog is loaded
+    const author = blog ? blog.author : null;
+
+    if (!blog) {
+        return <div className="blog-details-container">Loading...</div>;
+    }
 
     return (
         <div className="blog-details-container">
@@ -97,7 +102,7 @@ function BlogDetails() {
 
             <div className="blog-meta">
                 <span>
-                    {new Date(blog.createdAt).toDateString()} |{" "}
+                    {blog.createdAt ? new Date(blog.createdAt).toDateString() : ''} |{" "}
                     {blog.category?.toUpperCase()}
                 </span>
                 <span>{readTime} min read</span>

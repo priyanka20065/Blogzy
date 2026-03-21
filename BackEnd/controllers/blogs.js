@@ -64,16 +64,23 @@ const deleteBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const { id: blogID } = req.params;
+    // Find the blog first to check permissions
+    const existingBlog = await Blog.findById(blogID);
+    if (!existingBlog) {
+      return res.status(404).json({ msg: `NO blog with id : ${blogID}` });
+    }
+    // Only the creator can update
+    if (existingBlog.createdBy.toString() !== req.user.id) {
+      return res.status(403).json({ msg: 'Not authorized to edit this blog' });
+    }
+    // Now update
     const blog = await Blog.findByIdAndUpdate(blogID, req.body, {
       new: true,
       runValidators: true,
     }).populate("author");
-    if (!blog) {
-      return res.status(404).json({ msg: `NO  blog with id : ${blogID}` });
-    }
     res.status(200).json({ blog });
   } catch (error) {
-    res.status(501).json({ msg: error });
+    res.status(501).json({ msg: error.message || error });
   }
 };
 
