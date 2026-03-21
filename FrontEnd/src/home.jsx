@@ -171,8 +171,9 @@ function Home() {
                 description: "Premium Reader Plan",
                 order_id: data.order.id,
                 handler: async function (response) {
+                    const apiUrl = import.meta.env.VITE_API_URL;
                     const verifyRes = await fetch(
-                        "/api/payment/verify-payment",
+                        `${apiUrl}/api/payment/verify-payment`,
                         {
                             method: "POST",
                             headers: {
@@ -269,9 +270,9 @@ function Home() {
                 order_id: data.order.id,
 
                 handler: async function (response) {
-
+                    const apiUrl = import.meta.env.VITE_API_URL;
                     const verifyRes = await fetch(
-                        "/api/payment/verify-payment",
+                        `${apiUrl}/api/payment/verify-payment`,
                         {
                             method: "POST",
                             headers: {
