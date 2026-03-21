@@ -329,11 +329,19 @@ function Home() {
             try {
                 const token = localStorage.getItem("token");
                 const apiUrl = import.meta.env.VITE_API_URL;
+                console.log("[DEBUG] Homepage VITE_API_URL:", apiUrl);
+                if (!apiUrl) {
+                    throw new Error("VITE_API_URL is not set!");
+                }
                 const res = await fetch(`${apiUrl}/api/blogs`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                const contentType = res.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    throw new Error("API did not return JSON. Check VITE_API_URL and backend deployment.");
+                }
                 if (!res.ok) {
                     if (res.status === 401) {
                         navigate("/login");
@@ -352,6 +360,7 @@ function Home() {
                 setFeaturedBlogs(sorted.slice(0, 3));
             } catch (error) {
                 console.error("Error fetching blogs:", error);
+                setFeaturedBlogs([]);
             }
         };
         fetchBlogs();
