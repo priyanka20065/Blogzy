@@ -8,10 +8,15 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    console.log("[LOGIN DEBUG] Email:", email);
+    console.log("[LOGIN DEBUG] Password:", password);
     const user = await User.findOne({ email });
+    console.log("[LOGIN DEBUG] User found:", !!user);
     if (!user) return res.status(401).json({ msg: "Invalid Credentials." });
 
+    console.log("[LOGIN DEBUG] User password (hashed):", user.password);
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("[LOGIN DEBUG] bcrypt.compare result:", isMatch);
     if (!isMatch) return res.status(401).json({ msg: "Invalid Credentials." });
 
     const token = jwt.sign(
@@ -24,6 +29,7 @@ const login = async (req, res) => {
 
     res.status(200).json({ token, user });
   } catch (err) {
+    console.error("[LOGIN DEBUG] Error:", err);
     res.status(500).json({ msg: "Server error" });
   }
 };

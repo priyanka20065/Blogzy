@@ -102,7 +102,7 @@ function Signup() {
                         <span>OR</span>
                     </div>
                     <div className="auth-socials">
-                        <button>Sign Up With Google</button>
+                        <button type="button" onClick={() => window.location.href = "/api/auth/google"} className="google-btn">Sign Up With Google</button>
                     </div>
                     <p className="auth-switch">
                         Already have an account? <a href="/login">Login</a>

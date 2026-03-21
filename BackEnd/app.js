@@ -9,6 +9,8 @@ const connectDb = require("./db/connect");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const auth = require("./middleware/auth");
+const passport = require("passport");
+const googleAuthRoutes = require("./routes/googleAuth");
 require("dotenv").config();
 
 app.use((req, res, next) => {
@@ -29,8 +31,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
+// Initialize passport
+app.use(passport.initialize());
+
 // Public routes
 app.use("/api/auth", authRoutes);
+app.use("/api/auth", googleAuthRoutes);
 
 // Protected routes (apply auth middleware after public routes)
 // app.use(auth);
@@ -51,7 +57,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ msg: "Internal Server Error", error: err.message, stack: err.stack });
 });
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const start = async () => {
   try {

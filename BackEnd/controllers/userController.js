@@ -1,3 +1,13 @@
+// Get current user info from JWT
+const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        if (!user) return res.status(404).json({ msg: "User not found" });
+        res.json({ user });
+    } catch (error) {
+        res.status(500).json({ msg: "Internal Server Error", error: error.message });
+    }
+};
 const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const toggleBookmark = async (req, res) => {
@@ -120,4 +130,4 @@ const getFollowing = async (req, res) => {
     }
 };
 
-module.exports = { toggleFollow, getFollowing, toggleBookmark, getBookmarks };
+module.exports = { toggleFollow, getFollowing, toggleBookmark, getBookmarks, getMe };

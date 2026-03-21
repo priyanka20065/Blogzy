@@ -69,10 +69,10 @@ function AuthorDetail() {
                 const authorBlogs = blogsArray.filter(
                     (b) => b.author && b.author._id === authorData._id
                 );
-
-                authorBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                setBlogs(authorBlogs);
+                // Only public blogs for count
+                const publicBlogs = authorBlogs.filter(b => b.visibility === "public");
+                publicBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+                setBlogs(publicBlogs);
                 setLoading(false);
             } catch (err) {
                 setError(err.message);
@@ -138,7 +138,7 @@ function AuthorDetail() {
                     <div className="authorDetail-right-side">
                         <div className="authorDetail-stats">
                             <div className="authorDetail-stat-item">
-                                <span className="authorDetail-stat-value">{author.blogsCount || 0}</span>
+                                <span className="authorDetail-stat-value">{blogs.length}</span>
                                 <span className="authorDetail-stat-label">Blogs</span>
                             </div>
                             <div className="authorDetail-stat-item">

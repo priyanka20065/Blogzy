@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "./authorCard.css";
 
 function AuthorCard({ name, blogs, image, famousBlogs, id, bio }) {
+    // Only count public blogs if blogs is an array
+    const publicBlogCount = Array.isArray(blogs) ? blogs.filter(b => b.visibility === "public").length : blogs;
     return (
         <>
             <div className="AuthorCard">
@@ -11,7 +13,7 @@ function AuthorCard({ name, blogs, image, famousBlogs, id, bio }) {
                 </div>
 
                 <div className="author-middle">
-                    <span className="author-count">{blogs} Blogs</span>
+                    <span className="author-count">{publicBlogCount} Blogs</span>
 
                     <Link
                         to={`/author/${id}`}

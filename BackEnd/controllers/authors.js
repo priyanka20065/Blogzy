@@ -6,21 +6,25 @@ const getAllAuthors = async (req, res) => {
   try {
     const authors = await User.aggregate([
       { $match: { role: "author" } },
-      // Look up in 'blogs' collection
+      // Look up only PUBLIC blogs in 'blogs' collection
       {
         $lookup: {
           from: "blogs",
-          localField: "_id",
-          foreignField: "author",
+          let: { authorId: "$_id" },
+          pipeline: [
+            { $match: { $expr: { $and: [ { $eq: ["$author", "$$authorId"] }, { $eq: ["$visibility", "public"] } ] } } }
+          ],
           as: "blogsFromBlogs",
         },
       },
-      // Look up in 'authors' collection (just in case some blogs are wrongly assigned there)
+      // Look up only PUBLIC blogs in 'authors' collection (if any)
       {
         $lookup: {
           from: "authors",
-          localField: "_id",
-          foreignField: "author",
+          let: { authorId: "$_id" },
+          pipeline: [
+            { $match: { $expr: { $and: [ { $eq: ["$author", "$$authorId"] }, { $eq: ["$visibility", "public"] } ] } } }
+          ],
           as: "blogsFromAuthors",
         },
       },
@@ -63,8 +67,10 @@ const getAuthor = async (req, res) => {
       {
         $lookup: {
           from: "blogs",
-          localField: "_id",
-          foreignField: "author",
+          let: { authorId: "$_id" },
+          pipeline: [
+            { $match: { $expr: { $and: [ { $eq: ["$author", "$$authorId"] }, { $eq: ["$visibility", "public"] } ] } } }
+          ],
           as: "authorBlogs",
         },
       },
