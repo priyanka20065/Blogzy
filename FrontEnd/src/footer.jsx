@@ -16,10 +16,10 @@ const Footer = () => {
                         Bringing the best stories, insights, and perspectives directly to you.
                     </p>
                     <div className="footer-socials">
-                        <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
-                        <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-                        <a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/" className="social-icon" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
                     </div>
                 </div>
 
