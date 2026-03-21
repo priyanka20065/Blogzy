@@ -142,8 +142,9 @@ function Home() {
             }
 
             // 1️⃣ Create order from backend
+            const apiUrl = import.meta.env.VITE_API_URL;
             const res = await fetch(
-                "/api/payment/create-order",
+                `${apiUrl}/api/payment/create-order`,
                 {
                     method: "POST",
                     headers: {
@@ -235,8 +236,9 @@ function Home() {
             }
 
             // 1️⃣ Create order from backend
+            const apiUrl = import.meta.env.VITE_API_URL;
             const res = await fetch(
-                "/api/payment/create-order",
+                `${apiUrl}/api/payment/create-order`,
                 {
                     method: "POST",
                     headers: {
