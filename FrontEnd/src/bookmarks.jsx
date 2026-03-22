@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import BlogCard from "./blogCard";
 import "./blogs.css"; // Reuse blogs css for grid layout
