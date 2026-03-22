@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require('resend');
 const User = require("../models/UserSetting"); // now points to 'User' collection
 
 const sendContactEmail = async (req, res) => {
@@ -24,29 +24,21 @@ const sendContactEmail = async (req, res) => {
         const userEmail = user.email;
         console.log('[CONTACT] User email:', userEmail);
 
-        const transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: Number(process.env.EMAIL_PORT),
-            secure: Number(process.env.EMAIL_PORT) === 465,
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
-            },
-        });
-
-        const mailOptions = {
-            from: `"${name}" <${process.env.EMAIL_USER}>`,
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const emailData = {
+            from: `onboarding@resend.dev`,
             to: process.env.ADMIN_EMAIL,
-            replyTo: userEmail,
+            reply_to: userEmail,
             subject: `New Contact Message from ${name}`,
-            text: `User Email: ${userEmail}\n\nMessage:\n${message}`,
+            html: `<p><strong>From:</strong> ${name} (${userEmail})</p><p><strong>Message:</strong></p><p>${message}</p>`
         };
-
-        console.log('[CONTACT] Sending email with options:', mailOptions);
-        await transporter.sendMail(mailOptions);
-        console.log('[CONTACT] Email sent successfully!');
+        console.log('[CONTACT] Sending email with Resend:', emailData);
+        const resendResult = await resend.emails.send(emailData);
+        console.log('[CONTACT] Resend API result:', resendResult);
+        if (resendResult.error) {
+            throw new Error(resendResult.error.message || 'Resend API error');
+        }
         res.status(200).json({ msg: "Email sent successfully!" });
-
     } catch (error) {
         console.error('[CONTACT] Error sending email:', error);
         res.status(500).json({ msg: "Failed to send email", error: error.message });
