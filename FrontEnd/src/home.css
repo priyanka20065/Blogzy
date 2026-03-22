@@ -428,3 +428,26 @@
         opacity: 1;
     }
 }
+
+@media (max-width: 600px) {
+  .home-featured h2,
+  .home-faq h2,
+  .home-pricing h2 {
+    font-size: 2rem;
+    padding: 0 0.5rem;
+  }
+  .faq-question {
+    font-size: 1rem;
+  }
+  .faq-answer {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .home-featured h2,
+  .home-faq h2,
+  .home-pricing h2 {
+    font-size: 1.3rem;
+  }
+}

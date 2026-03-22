@@ -208,3 +208,30 @@
         padding: 2rem;
     }
 }
+
+@media (max-width: 600px) {
+    .auth-card {
+        padding: 1rem;
+    }
+
+    .auth-title {
+        font-size: 2rem !important;
+        word-break: break-word;
+        padding: 0 0.5rem;
+    }
+
+    .auth-form-section {
+        padding: 1rem;
+    }
+
+    .auth-form input,
+    .auth-form button {
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth-title {
+        font-size: 1.3rem !important;
+    }
+}

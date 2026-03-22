@@ -24,3 +24,21 @@
 
     padding: 0 2rem;
 }
+
+@media (max-width: 600px) {
+  .Blogs-heading {
+    font-size: 2.2rem;
+    word-break: break-word;
+    padding: 0 0.5rem;
+  }
+  .Blogs-subtext {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .Blogs-heading {
+    font-size: 1.5rem;
+  }
+}

@@ -228,3 +228,23 @@
         font-size: 3rem;
     }
 }
+
+@media (max-width: 600px) {
+    .author-detail-heading {
+        font-size: 2rem !important;
+        word-break: break-word;
+        padding: 0 0.5rem;
+    }
+
+    .author-detail-bio,
+    .author-detail-info {
+        font-size: 1rem !important;
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .author-detail-heading {
+        font-size: 1.3rem !important;
+    }
+}

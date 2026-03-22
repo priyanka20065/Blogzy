@@ -157,3 +157,23 @@
 .comment-btn:hover:enabled {
     background: #e55a5a;
 }
+
+@media (max-width: 600px) {
+  .blog-detail-title {
+    font-size: 2rem !important;
+    word-break: break-word;
+    padding: 0 0.5rem;
+  }
+  .blog-detail-author,
+  .blog-detail-date,
+  .blog-detail-content {
+    font-size: 1rem !important;
+    padding: 0 0.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .blog-detail-title {
+    font-size: 1.3rem !important;
+  }
+}

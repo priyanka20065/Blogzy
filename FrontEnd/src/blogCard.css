@@ -117,3 +117,14 @@
 .read-more:hover {
     opacity: 0.8;
 }
+
+@media (max-width: 600px) {
+  .blog-card-title {
+    font-size: 1.2rem !important;
+    padding: 0 0.5rem;
+  }
+  .blog-card-summary {
+    font-size: 0.95rem !important;
+    padding: 0 0.5rem;
+  }
+}
