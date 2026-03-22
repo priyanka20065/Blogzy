@@ -345,3 +345,47 @@ input:checked+.theme-slider:before {
 .dropdown-item.logout i {
     color: #ff4d4f;
 }
+
+@media (max-width: 900px) {
+  .Navbar-full {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.8rem 2%;
+  }
+  .Navbar-ele {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .Navbar-full {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1%;
+    width: 100vw;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .Navbar-name a {
+    font-size: 1.2rem;
+  }
+  .Navbar-ele {
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .Navbar-ele a,
+  .Navbar-ele span,
+  .Navbar-ele button {
+    font-size: 0.95rem;
+  }
+}
+
+body {
+  overflow-x: hidden !important;
+}
