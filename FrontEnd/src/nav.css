@@ -191,7 +191,7 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 0.8rem 0;
-    z-index: 1000;
+    z-index: 9999;
     animation: fadeInDown 0.3s ease-out;
     border: 1px solid var(--border-color);
 }
@@ -453,6 +453,21 @@ input:checked+.theme-slider:before {
 
 .profile-dropdown {
   top: 120%;
+}
+
+/* Ensure dropdowns always appear above all content */
+.dropdown-content {
+  z-index: 99999 !important;
+}
+
+.profile-dropdown {
+  z-index: 99999 !important;
+}
+
+/* Ensure parent containers are not clipping dropdowns */
+.Navbar-full, .Navbar-ele, .profile-menu {
+  position: relative;
+  overflow: visible;
 }
 
 body {
