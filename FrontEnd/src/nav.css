@@ -8,6 +8,7 @@
     position: relative;
     background-color: var(--nav-bg);
     transition: all 0.3s ease;
+    overflow-x: visible;
 }
 
 .Navbar-name a {
@@ -455,5 +456,5 @@ input:checked+.theme-slider:before {
 }
 
 body {
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
 }
