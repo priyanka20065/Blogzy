@@ -86,11 +86,12 @@
     left: 0;
     background: var(--card-bg);
     min-width: 160px;
+    max-width: 90vw;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     flex-direction: column;
     padding: 0.5rem 0;
-    z-index: 99;
+    z-index: 9999;
     border: 1px solid var(--border-color);
 }
 
@@ -185,6 +186,7 @@
     right: 0;
     background: var(--card-bg);
     min-width: 220px;
+    max-width: 95vw;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     padding: 0.8rem 0;
@@ -357,6 +359,20 @@ input:checked+.theme-slider:before {
     flex-wrap: wrap;
     width: 100%;
     justify-content: flex-start;
+  }
+  .dropdown-content {
+    left: 0;
+    min-width: 140px;
+    max-width: 90vw;
+    font-size: 0.95rem;
+    z-index: 9999;
+  }
+  .profile-dropdown {
+    right: 0;
+    min-width: 160px;
+    max-width: 95vw;
+    font-size: 0.95rem;
+    z-index: 9999;
   }
 }
 
