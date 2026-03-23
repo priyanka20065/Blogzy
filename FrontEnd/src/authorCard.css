@@ -1,13 +1,14 @@
 .AuthorCard {
-    background: var(--card-bg);
-    padding: 3rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-    border-bottom: 2px solid var(--border-color);
-    width: 100%;
-    transition: background 0.3s ease;
+  background: var(--card-bg);
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 2px solid var(--border-color);
+  width: 100%;
+  transition: background 0.3s ease;
+  position: relative;
 }
 
 .AuthorCard:hover {
@@ -37,16 +38,17 @@
 }
 
 .author-middle {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1.5rem;
-    flex: 1;
-    width: 100%;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  flex: 1;
+  min-width: 160px;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
 
 .author-count {
